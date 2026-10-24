@@ -1,0 +1,13 @@
+services:
+  tracker-reminder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tracker-reminder
+    restart: unless-stopped
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      CHAT_REQUEST_TIMEOUT_SECONDS: ${CHAT_REQUEST_TIMEOUT_SECONDS:-30}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
